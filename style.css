@@ -5,7 +5,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Используем min-height, чтобы контент мог расширяться */
+    min-height: 100vh;
     overflow-x: hidden; /* Скрываем горизонтальный скролл */
     text-align: center;
     background-color: #0d0c1d;
@@ -14,6 +14,7 @@ body {
     background-position: center;
     background-attachment: fixed;
     position: relative;
+    box-sizing: border-box; /* Важно для корректного расчета размеров */
 }
 
 body::before {
@@ -35,7 +36,9 @@ body::before {
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
     padding: 45px 65px;
     z-index: 2;
-    max-width: 90%; /* Ограничиваем максимальную ширину для больших экранов */
+    width: 90%; /* Используем ширину в процентах */
+    max-width: 800px; /* Ограничиваем максимальную ширину */
+    box-sizing: border-box; /* Важно для корректного расчета размеров */
 }
 
 h1 {
@@ -50,6 +53,7 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 25px;
+    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку, если не хватает места */
 }
 
 .countdown-timer div {
@@ -61,8 +65,9 @@ h1 {
     padding: 18px 22px;
     border: 1px solid rgba(129, 212, 250, 0.15);
     box-shadow: 0 0 10px rgba(129, 212, 250, 0.2);
-    flex: 1; /* Обеспечиваем равномерное распределение по ширине */
-    min-width: 0; /* Разрешаем сжиматься */
+    flex: 1; /* Равномерное распределение доступного пространства */
+    min-width: 120px; /* Минимальная ширина для каждого блока, чтобы не слишком сжимались */
+    box-sizing: border-box; /* Важно для корректного расчета размеров */
 }
 
 .countdown-timer span {
@@ -83,12 +88,57 @@ h1 {
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
----
+/* --- */
+/* Мобильная оптимизация */
 
-### Главные изменения и почему они работают
+/* Для экранов до 768px (планшеты и большие телефоны) */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 40px;
+        width: 95%; /* Чуть больше ширины для лучшего использования пространства */
+    }
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+    .countdown-timer {
+        gap: 15px;
+    }
+    .countdown-timer div {
+        padding: 15px 18px;
+        min-width: 100px; /* Уменьшаем минимальную ширину */
+    }
+    .countdown-timer span {
+        font-size: 2.8em;
+    }
+    .countdown-timer p {
+        font-size: 0.85em;
+    }
+}
 
-1.  **Гибкость контейнера**: Вместо жёстко заданных размеров, `max-width: 90%` позволяет контейнеру `.container` занимать до 90% ширины экрана, оставляя небольшие отступы по краям, что предотвращает обрезку.
-2.  **Гибкие блоки таймера**: Свойство `flex: 1` для `.countdown-timer div` заставляет каждый блок равномерно заполнять доступное пространство, а `min-width: 0` позволяет им сжиматься, если места не хватает.
-3.  **Уменьшение шрифта на маленьких экранах**: В медиа-запросе `@media (max-width: 600px)` шрифты и отступы значительно уменьшены. Это критически важно, так как на узких экранах стандартный размер текста и блоков слишком велик.
-4.  **Вертикальное расположение**: `flex-direction: column` внутри медиа-запроса перестраивает блоки таймера в вертикальный столбец, что является стандартным и удобным решением для мобильных устройств.
-5.  **Добавление `overflow-x: hidden`**: Это свойство предотвращает появление горизонтальной полосы прокрутки, которая часто возникает при обрезке элементов.
+/* Для экранов до 480px (большинство телефонов) */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 25px;
+        width: 95%; /* Ширина остается 95% */
+    }
+    h1 {
+        font-size: 1.4em;
+        margin-bottom: 20px;
+    }
+    .countdown-timer {
+        flex-direction: column; /* Элементы выстраиваются в столбец */
+        gap: 10px;
+    }
+    .countdown-timer div {
+        width: 100%; /* Каждый блок занимает всю ширину */
+        padding: 12px 15px;
+        min-width: unset; /* Снимаем ограничение минимальной ширины */
+    }
+    .countdown-timer span {
+        font-size: 2em;
+    }
+    .countdown-timer p {
+        font-size: 0.75em;
+    }
+}
