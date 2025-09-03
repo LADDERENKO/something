@@ -5,8 +5,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh; /* Используем min-height, чтобы контент мог расширяться */
+    overflow-x: hidden; /* Скрываем горизонтальный скролл */
     text-align: center;
     background-color: #0d0c1d;
     background-image: url('https://images.unsplash.com/photo-1502134249126-9f375525c879?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ3NDh8MHwxfHNlYXJjaHw1fHxzcGFjZXxlbnwwfHx8fDE2OTU0MjM4MTJ8&ixlib=rb-4.0.3&q=80&w=1080');
@@ -35,6 +35,7 @@ body::before {
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
     padding: 45px 65px;
     z-index: 2;
+    max-width: 90%; /* Ограничиваем максимальную ширину для больших экранов */
 }
 
 h1 {
@@ -60,6 +61,8 @@ h1 {
     padding: 18px 22px;
     border: 1px solid rgba(129, 212, 250, 0.15);
     box-shadow: 0 0 10px rgba(129, 212, 250, 0.2);
+    flex: 1; /* Обеспечиваем равномерное распределение по ширине */
+    min-width: 0; /* Разрешаем сжиматься */
 }
 
 .countdown-timer span {
@@ -80,33 +83,12 @@ h1 {
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-/* --- */
-/* Mobile Optimization */
-@media (max-width: 600px) {
-    .container {
-        padding: 25px 35px;
-    }
+---
 
-    h1 {
-        font-size: 1.6em;
-        margin-bottom: 25px;
-    }
+### Главные изменения и почему они работают
 
-    .countdown-timer {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .countdown-timer div {
-        width: 100%;
-        padding: 15px;
-    }
-    
-    .countdown-timer span {
-        font-size: 2.5em;
-    }
-
-    .countdown-timer p {
-        font-size: 0.8em;
-    }
-}
+1.  **Гибкость контейнера**: Вместо жёстко заданных размеров, `max-width: 90%` позволяет контейнеру `.container` занимать до 90% ширины экрана, оставляя небольшие отступы по краям, что предотвращает обрезку.
+2.  **Гибкие блоки таймера**: Свойство `flex: 1` для `.countdown-timer div` заставляет каждый блок равномерно заполнять доступное пространство, а `min-width: 0` позволяет им сжиматься, если места не хватает.
+3.  **Уменьшение шрифта на маленьких экранах**: В медиа-запросе `@media (max-width: 600px)` шрифты и отступы значительно уменьшены. Это критически важно, так как на узких экранах стандартный размер текста и блоков слишком велик.
+4.  **Вертикальное расположение**: `flex-direction: column` внутри медиа-запроса перестраивает блоки таймера в вертикальный столбец, что является стандартным и удобным решением для мобильных устройств.
+5.  **Добавление `overflow-x: hidden`**: Это свойство предотвращает появление горизонтальной полосы прокрутки, которая часто возникает при обрезке элементов.
