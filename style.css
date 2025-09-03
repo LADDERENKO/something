@@ -78,11 +78,10 @@ h1 {
     letter-spacing: 0.8px;
 }
 
-/* Добавляем импорт шрифта Orbitron из Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 /* --- */
-/* Мобильная оптимизация (Media Query) */
+/* Mobile Optimization */
 @media (max-width: 600px) {
     .container {
         padding: 25px 35px;
@@ -94,19 +93,20 @@ h1 {
     }
 
     .countdown-timer {
-        flex-direction: column; /* Элементы будут выстраиваться в колонку */
-        gap: 15px; /* Уменьшаем зазор между элементами */
+        flex-direction: column;
+        gap: 15px;
     }
 
     .countdown-timer div {
-        width: 100%; /* Каждый блок будет занимать всю доступную ширину */
+        width: 100%;
+        padding: 15px;
     }
     
     .countdown-timer span {
-        font-size: 2.5em; /* Уменьшаем размер цифр */
+        font-size: 2.5em;
     }
 
     .countdown-timer p {
-        font-size: 0.8em; /* Уменьшаем размер текста */
+        font-size: 0.8em;
     }
 }
