@@ -1,0 +1,82 @@
+body {
+    font-family: 'Orbitron', sans-serif; /* Футуристический шрифт */
+    color: #CFD8DC; /* Мягкий светло-серый */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Чтобы фон не прокручивался */
+    text-align: center;
+    background-color: #0d0c1d; /* Очень темный синий */
+    background-image: url('https://images.unsplash.com/photo-1502134249126-9f375525c879?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ3NDh8MHwxfHNlYXJjaHw1fHxzcGFjZXxlbnwwfHx8fDE2OTU0MjM4MTJ8&ixlib=rb-4.0.3&q=80&w=1080'); /* Фоновое изображение космоса */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Фон не прокручивается */
+    position: relative;
+}
+
+body::before { /* Наложение для затемнения фона и лучшей читаемости */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Чуть темнее, чтобы компенсировать уменьшение свечения */
+    z-index: 1;
+}
+
+.container {
+    background: rgba(25, 35, 55, 0.85); /* Полупрозрачный темно-синий, чуть более плотный */
+    backdrop-filter: blur(8px); /* Немного меньше размытия */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Чуть менее заметная рамка */
+    border-radius: 15px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25); /* Менее интенсивная тень */
+    padding: 45px 65px; /* Немного меньше отступов */
+    z-index: 2; /* Над фоновым наложением */
+}
+
+h1 {
+    color: #81D4FA; /* Мягкий светло-голубой */
+    text-shadow: 0 0 8px rgba(129, 212, 250, 0.5), 0 0 15px rgba(129, 212, 250, 0.3); /* Менее интенсивное свечение */
+    margin-bottom: 35px;
+    font-size: 2.2em; /* Чуть меньше размер */
+    letter-spacing: 1.5px; /* Чуть меньше межбуквенный интервал */
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Чуть меньше зазор между элементами */
+}
+
+.countdown-timer div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03); /* Еще более легкий фон для каждого элемента */
+    border-radius: 8px; /* Чуть меньше скругление */
+    padding: 18px 22px; /* Чуть меньше отступов */
+    border: 1px solid rgba(129, 212, 250, 0.15); /* Менее заметная рамка */
+    box-shadow: 0 0 10px rgba(129, 212, 250, 0.2); /* Менее интенсивная тень */
+}
+
+.countdown-timer span {
+    font-size: 3.5em; /* Чуть меньше размер цифр */
+    font-weight: bold;
+    color: #A7FFEB; /* Мягкий мятно-зеленый */
+    text-shadow: 0 0 8px rgba(167, 255, 235, 0.6), 0 0 15px rgba(167, 255, 235, 0.4); /* Менее интенсивное свечение */
+    line-height: 1;
+}
+
+.countdown-timer p {
+    margin: 8px 0 0; /* Чуть меньше отступ сверху */
+    color: #B3E5FC; /* Мягкий светло-голубой */
+    font-size: 0.95em; /* Чуть меньше размер текста */
+    text-transform: uppercase;
+    letter-spacing: 0.8px; /* Чуть меньше межбуквенный интервал */
+}
+
+/* Добавляем импорт шрифта Orbitron из Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
